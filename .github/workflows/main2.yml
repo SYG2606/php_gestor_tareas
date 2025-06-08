@@ -1,0 +1,22 @@
+name: Analizar código con PHPStan
+
+on: [push, pull_request]
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar repositorio
+      uses: actions/checkout@v3
+
+    - name: Configurar PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: Descargar PHPStan
+      run: curl -L https://github.com/phpstan/phpstan/releases/latest/download/phpstan.phar -o phpstan.phar
+
+    - name: Ejecutar PHPStan
+      run: php phpstan.phar analyse --level=max --no-progress php_crud_mysql
