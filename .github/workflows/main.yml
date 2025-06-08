@@ -16,3 +16,7 @@ jobs:
 
     - name: Verificar errores de sintaxis PHP
       run: find . -name "*.php" -exec php -l {} \;
+    - name: Ejecutar PHPStan
+      run: vendor/bin/phpstan analyse --level=max --no-progress
+
+      
