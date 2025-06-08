@@ -1,0 +1,21 @@
+name: Ejecutar tests PHP
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configurar PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: Instalar dependencias
+      run: composer install
+
+    - name: Ejecutar tests
+      run: vendor/bin/phpunit
